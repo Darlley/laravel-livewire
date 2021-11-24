@@ -19,6 +19,13 @@
         <div style="border: 1px solid black; margin: 1rem 0; padding: 1rem;">
             <h3>Name: {{ $tweet->user->name }}</h3>
             <p>{{ $tweet->content }}</p>
+            <div>
+            @if($tweet->likes->count())
+                <a style="display:inline-block; padding: .5rem 1rem; background-color: red; color: white; border-radius: 6px; margin-top: 1rem;" href="">Deslike</a>
+            @else 
+                <a style="display:inline-block; padding: .5rem 1rem; background-color: #007bff; color: white; border-radius: 6px; margin-top: 1rem;" class="like" href="">Like</a>
+            @endif
+            </div>
         </div>
         @endforeach
     </div>
