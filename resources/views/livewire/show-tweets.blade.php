@@ -1,7 +1,16 @@
 <div>
     {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
-    <p>{{ $infoName ? "Dinamic: - {$infoName} -" : "Static: - - - "}}</p>
-    <input type="text" name="name" id="name" wire:model="infoName" placeholder="Digite algo">
+    <p>{{ $content ? $content : "Preview... " }}</p>
+    <form method="POST" wire:submit.prevent="create">
+        <input type="text" name="content" id="content" wire:model="content" placeholder="Digite algo... (280 caracteres)">
+        @error('content')
+        <marquee>{{ $message }}</marquee>
+        @enderror
+        <span></span>
+        <button type="submit">
+            Criar Tweet
+        </button>
+    </form>
 
     <hr>
 
@@ -10,7 +19,9 @@
         <div style="border: 1px solid black; margin: 1rem 0; padding: 1rem;">
             <h3>Name: {{ $tweet->user->name }}</h3>
             <p>{{ $tweet->content }}</p>
-            </div>
-        @endforeach
         </div>
+        @endforeach
+    </div>
+    <div class="navigator">{{ $tweets->links() }}</div>
+    
 </div>
