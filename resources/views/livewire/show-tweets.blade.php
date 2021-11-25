@@ -17,8 +17,21 @@
     <div>
         @foreach ($tweets as $tweet)
         <div style="border: 1px solid black; margin: 1rem 0; padding: 1rem;">
-            <h3>Name: {{ $tweet->user->name }}</h3>
-            <p>{{ $tweet->content }}</p>
+            <div style="display: flex; align-items: center;">
+                @if ($tweet->user->photo)
+                <img style="width: 40px; border-radius: 50%;" src="{{ url("storage/{$tweet->user->photo}") }}" alt="{{ $tweet->user->name }}">
+                @else
+                <img style="width: 40px; border-radius: 50%;" src="{{ url('img/no-image.png') }}" alt="{{ $tweet->user->name }}">
+                @endif
+                <div style="margin-left: 1rem;">
+                    <p>Name: </p>
+                    <h3>{{ $tweet->user->name }}</h3>
+                </div>
+            </div>
+            <div style="padding: 1rem 0;">
+                <h3>Tweet</h3>
+                <p>{{ $tweet->content }}</p>
+            </div>
             <div>
             @if($tweet->likes->count())
                 <a style="display:inline-block; padding: .5rem 1rem; background-color: red; color: white; border-radius: 6px; margin-top: 1rem;" href="#" wire:click.prevent="unlike({{ $tweet->id }})">Deslike</a>

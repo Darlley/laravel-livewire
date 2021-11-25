@@ -21,9 +21,10 @@ class UploadPhoto extends Component
         ]);
 
         $user = auth()->user();
-        $nameFile = Str::slug(auth()->user()->name). '.' .$this->photo->getClientOriginalExtension();
+        $nameFile = Str::slug(auth()->user()->name) . '.' . $this->photo->getClientOriginalExtension();
 
-        if($path = $this->photo->storaAs('users', $nameFile)){
+        $path = $this->photo->storeAs('users', $nameFile);
+        if($path){
             $user->update([
                 'profile_photo_path' => $path,
             ]);
