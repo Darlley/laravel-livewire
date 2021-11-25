@@ -21,9 +21,9 @@
             <p>{{ $tweet->content }}</p>
             <div>
             @if($tweet->likes->count())
-                <a style="display:inline-block; padding: .5rem 1rem; background-color: red; color: white; border-radius: 6px; margin-top: 1rem;" href="">Deslike</a>
+                <a style="display:inline-block; padding: .5rem 1rem; background-color: red; color: white; border-radius: 6px; margin-top: 1rem;" href="#" wire:click.prevent="unlike({{ $tweet->id }})">Deslike</a>
             @else 
-                <a style="display:inline-block; padding: .5rem 1rem; background-color: #007bff; color: white; border-radius: 6px; margin-top: 1rem;" class="like" href="">Like</a>
+                <a style="display:inline-block; padding: .5rem 1rem; background-color: #007bff; color: white; border-radius: 6px; margin-top: 1rem;" class="like" href="#" wire:click.prevent="like({{ $tweet->id }})" >Like</a>
             @endif
             </div>
         </div>
